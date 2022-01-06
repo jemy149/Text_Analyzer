@@ -81,182 +81,194 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
 
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Material(
-                      child: Text(
-                        "SIGNUP",
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: kPrimaryColor),
+                Form(
+                  key: _signUpFormKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Material(
+                        child: Text(
+                          "SIGNUP",
+                          style:
+                              TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: kPrimaryColor),
+                        ),
                       ),
-                    ),
-                    SizedBox(height: size.height * 0.1),
-                    SvgPicture.asset(
-                      "assets/signup.svg",
-                      height: size.height * 0.25,
-                    ),
-                    SizedBox(height: size.height * 0.03),
+                      SizedBox(height: size.height * 0.1),
+                      SvgPicture.asset(
+                        "assets/signup.svg",
+                        height: size.height * 0.25,
+                      ),
+                      SizedBox(height: size.height * 0.03),
 
-                    Container(
-                        margin: const EdgeInsets.symmetric(vertical: 10),
-                        width: size.width * 0.8,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(29),
-                          child: Material(
-                            child: TextFormField(
-                              onEditingComplete: () => _submitFormOnSignUp,
-                              controller: _nameTextController,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "Please enter your name";
-                                } else {
-                                  return null;
-                                }
-                              },
-
-                              // onChanged: (){},
-                              cursorColor: kPrimaryColor,
-                              decoration: InputDecoration(
-                                icon: Padding(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Icon(
-                                    Icons.person,
-                                    color: kPrimaryColor,
+                      Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          width: size.width * 0.8,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(29),
+                            child: Material(
+                              child: TextFormField(
+                                onEditingComplete: () => _submitFormOnSignUp,
+                                controller: _nameTextController,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Please enter your name";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                cursorColor: kPrimaryColor,
+                                decoration: InputDecoration(
+                                  icon: Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Icon(
+                                      Icons.person,
+                                      color: kPrimaryColor,
+                                    ),
                                   ),
+                                  hintText: 'Name',
+                                  border: InputBorder.none,
                                 ),
-                                hintText: 'Name',
-                                border: InputBorder.none,
                               ),
                             ),
-                          ),
-                        )),
-                    Container(
-                        margin: const EdgeInsets.symmetric(vertical: 10),
-                        width: size.width * 0.8,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(29),
-                          child: Material(
-                            child: TextFormField(
-                              textInputAction: TextInputAction.next,
-                              onEditingComplete: () => FocusScope.of(context)
-                                  .requestFocus(_passFocusNode),
-                              focusNode: _emailFocusNode,
-                              keyboardType: TextInputType.emailAddress,
-                              controller: _emailTextController,
-                              validator: (value) {
-                                if (value!.isEmpty || !value.contains("@")) {
-                                  return "Please enter a valid Email address";
-                                } else {
-                                  return null;
-                                }
-                              },
-                              // validator: (value) {
-                              //   if (value!.isEmpty) {
-                              //     return "Please enter your email";
-                              //   } else {
-                              //     return null;
-                              //   }
-                              // },
-                              // onChanged: (){},
-                              cursorColor: kPrimaryColor,
-                              decoration: InputDecoration(
-                                icon: Padding(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Icon(
-                                    Icons.person,
-                                    color: kPrimaryColor,
+                          )),
+                      Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          width: size.width * 0.8,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(29),
+                            child: Material(
+                              child: TextFormField(
+
+                                textInputAction: TextInputAction.next,
+                                onEditingComplete: () => FocusScope.of(context)
+                                    .requestFocus(_passFocusNode),
+                                focusNode: _emailFocusNode,
+                                keyboardType: TextInputType.emailAddress,
+                                controller: _emailTextController,
+                                validator: (value) {
+                                  if (value!.isEmpty || !value.contains("@")) {
+                                    return "Please enter a valid Email address";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                // validator: (value) {
+                                //   if (value!.isEmpty) {
+                                //     return "Please enter your email";
+                                //   } else {
+                                //     return null;
+                                //   }
+                                // },
+                                // onChanged: (){},
+                                cursorColor: kPrimaryColor,
+                                decoration: InputDecoration(
+                                  icon: Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Icon(
+                                      Icons.person,
+                                      color: kPrimaryColor,
+                                    ),
                                   ),
+                                  hintText: 'Email',
+                                  border: InputBorder.none,
                                 ),
-                                hintText: 'Email',
-                                border: InputBorder.none,
                               ),
                             ),
-                          ),
-                        )),
-                    Container(
+                          )),
+                      Container(
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          width: size.width * 0.8,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(29),
+                            child: Material(
+                              child: TextFormField(
+                                keyboardType: TextInputType.visiblePassword,
+                                textInputAction: TextInputAction.done,
+                                onEditingComplete: () => _submitFormOnSignUp(),
+                                focusNode: _passFocusNode,
+                                controller: _passTextController,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Please enter your password";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                obscureText: true,
+                                // onChanged: onChanged,
+                                cursorColor: kPrimaryColor,
+                                decoration: InputDecoration(
+
+                                  hintText: "Password",
+                                  icon: Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Icon(
+                                      Icons.lock,
+                                      color: kPrimaryColor,
+                                    ),
+                                  ),
+                                  suffixIcon:  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _obscureText = !_obscureText;
+                                      });
+                                    },
+                                    child: Icon(
+                                      _obscureText
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          )),
+                      _isLoading
+                          ? Center(
+                          child: Container(
+                            height: 50,
+                            width: 50,
+                            child: CircularProgressIndicator(),
+                          )):
+                      Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         width: size.width * 0.8,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(29),
-                          child: Material(
-                            child: TextFormField(
-                              textInputAction: TextInputAction.done,
-                              onEditingComplete: () => _submitFormOnSignUp(),
-                              focusNode: _passFocusNode,
-                              controller: _passTextController,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "Please enter your password";
-                                } else {
-                                  return null;
-                                }
-                              },
-                              obscureText: true,
-                              // onChanged: onChanged,
-                              cursorColor: kPrimaryColor,
-                              decoration: const InputDecoration(
-
-                                hintText: "Password",
-                                icon: Padding(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Icon(
-                                    Icons.lock,
-                                    color: kPrimaryColor,
-                                  ),
-                                ),
-                                suffixIcon: Icon(
-                                  Icons.visibility,
-                                  color: kPrimaryColor,
-                                ),
-                                border: InputBorder.none,
-                              ),
+                          child: ElevatedButton(
+                            child: Text(
+                              'SignUp',
+                              style: TextStyle(color: Colors.white),
                             ),
+                            onPressed: _submitFormOnSignUp,
+                            style: ElevatedButton.styleFrom(
+                                primary: kPrimaryColor,
+                                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                                textStyle: TextStyle(
+                                    color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500)),
                           ),
-                        )),
-                    _isLoading
-                        ? Center(
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          child: CircularProgressIndicator(),
-                        )):
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      width: size.width * 0.8,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(29),
-                        child: ElevatedButton(
-                          child: Text(
-                            'SignUp',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          onPressed: _submitFormOnSignUp,
-                          style: ElevatedButton.styleFrom(
-                              primary: kPrimaryColor,
-                              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                              textStyle: TextStyle(
-                                  color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500)),
                         ),
                       ),
-                    ),
-                     SizedBox(height: size.height * 0.03),
-                    Material(
-                      child: AlreadyHaveAnAccountCheck(
-                        login: false,
-                        press: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return LoginScreen();
-                              },
-                            ),
-                          );
-                        },
+                       SizedBox(height: size.height * 0.03),
+                      Material(
+                        child: AlreadyHaveAnAccountCheck(
+                          login: false,
+                          press: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return LoginScreen();
+                                },
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )
               ],
             ),
