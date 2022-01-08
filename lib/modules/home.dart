@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
         color: kPrimaryColor.withOpacity(0.35),
         backgroundColor: kPrimaryLightColor,
         key: _bottomNavigationKey,
-        buttonBackgroundColor: Colors.pink,
+        buttonBackgroundColor: Colors.white,
         height: 60,
         // ignore: prefer_const_literals_to_create_immutables
         items: <Widget>[
