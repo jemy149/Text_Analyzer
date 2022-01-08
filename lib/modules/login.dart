@@ -9,6 +9,7 @@ import 'package:sentimental_analyst/modules/home.dart';
 import 'package:sentimental_analyst/modules/result.dart';
 import 'package:sentimental_analyst/modules/signup.dart';
 import 'package:sentimental_analyst/models/model.dart';
+import 'package:sentimental_analyst/shared/global_method.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -18,9 +19,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   // const LoginScreen({Key? key}) : super(key: key);
   late TextEditingController _emailTextController =
-  TextEditingController(text: '');
+      TextEditingController(text: '');
   late TextEditingController _passTextController =
-  TextEditingController(text: '');
+      TextEditingController(text: '');
   FocusNode _emailFocusNode = FocusNode();
   FocusNode _passFocusNode = FocusNode();
 
@@ -45,20 +46,29 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         _isLoading = true;
       });
-      try{
+      try {
         await _auth.signInWithEmailAndPassword(
             email: _emailTextController.text.trim().toLowerCase(),
             password: _passTextController.text.trim());
-      }catch(err){
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return Home();
+            },
+          ),
+        );
+      } catch (errorrr) {
         setState(() {
           _isLoading = false;
         });
-        print('error occurred $err');
+        GlobalMethod.showErrorDialog(error: errorrr.toString(), ctx: context);
+        print('error occurred $errorrr');
       }
-      setState(() {
-        _isLoading = false;
-      });
     }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -118,7 +128,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(29),
                           child: Material(
                             child: TextFormField(
-
                               textInputAction: TextInputAction.next,
                               onEditingComplete: () => FocusScope.of(context)
                                   .requestFocus(_passFocusNode),
@@ -132,7 +141,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   return null;
                                 }
                               },
-
                               cursorColor: kPrimaryColor,
                               decoration: InputDecoration(
                                 icon: Padding(
@@ -171,7 +179,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               // onChanged: onChanged,
                               cursorColor: kPrimaryColor,
                               decoration: InputDecoration(
-
                                 hintText: "Password",
                                 icon: Padding(
                                   padding: EdgeInsets.only(left: 10),
@@ -198,21 +205,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         )),
-                    RoundedButton(
-                      text: "LOGIN",
-                      press: _submitFormOnLogin
-                      //     () {
-                      //   Navigator.pushReplacement(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) {
-                      //         return Bottom();
-                      //       },
-                      //     ),
-                      //   );
-                      // },
-                    ),
+                    RoundedButton(text: "LOGIN", press: _submitFormOnLogin
 
+                        ),
                     SizedBox(height: size.height * 0.03),
                     Material(
                       color: kPrimaryLightColor,

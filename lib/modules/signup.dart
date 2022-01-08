@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sentimental_analyst/modules/home.dart';
 import 'package:sentimental_analyst/shared/components/components.dart';
 import 'package:sentimental_analyst/shared/components/palette.dart';
 import 'package:sentimental_analyst/modules/login.dart';
@@ -12,7 +13,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  // const SignUpScreen({Key? key}) : super(key: key);
+
 
   bool _obscureText = true;
   final _signUpFormKey = GlobalKey<FormState>();
@@ -48,6 +49,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
         await _auth.createUserWithEmailAndPassword(
             email: _emailTextController.text.trim().toLowerCase(),
             password: _passTextController.text.trim());
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return Home();
+            },
+          ),
+        );
+
       }catch(err){
         setState(() {
           _isLoading = false;
@@ -152,16 +162,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     return null;
                                   }
                                 },
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return "Please enter your email";
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
-                                // onChanged: (){},
                                 cursorColor: kPrimaryColor,
                                 decoration: InputDecoration(
+
                                   icon: Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     child: Icon(
@@ -195,18 +198,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   }
                                 },
                                 obscureText: true,
-                                // onChanged: onChanged,
                                 cursorColor: kPrimaryColor,
                                 decoration: InputDecoration(
-
-                                  hintText: "Password",
-                                  icon: Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    child: Icon(
-                                      Icons.lock,
-                                      color: kPrimaryColor,
-                                    ),
-                                  ),
                                   suffixIcon:  GestureDetector(
                                     onTap: () {
                                       setState(() {
@@ -217,9 +210,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       _obscureText
                                           ? Icons.visibility
                                           : Icons.visibility_off,
-                                      color: Colors.white,
+                                      color: kPrimaryColor,
                                     ),
                                   ),
+                                  hintText: "Password",
+                                  icon: Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Icon(
+                                      Icons.lock,
+                                      color: kPrimaryColor,
+                                    ),
+                                  ),
+
                                   border: InputBorder.none,
                                 ),
                               ),

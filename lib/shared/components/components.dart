@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:sentimental_analyst/models/tweets.dart';
 import 'package:sentimental_analyst/modules/search.dart';
-import 'package:sentimental_analyst/modules/signup.dart';
 import 'package:sentimental_analyst/shared/components/palette.dart';
 import 'package:sentimental_analyst/modules/favourits.dart';
 import 'package:sentimental_analyst/modules/home.dart';
@@ -48,79 +48,35 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
   }
 }
 
-// ignore: use_key_in_widget_constructors
-class Bottom extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Bottom> {
-  int _page = 0;
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-  List _widgetOptions = [
-    HomeScreen(),
-    Favourits(),
-    SearchScreen(),
-    CustomeDrawer(),
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        color: kPrimaryColor.withOpacity(0.35),
-        backgroundColor: kPrimaryLightColor,
-        key: _bottomNavigationKey,
-        buttonBackgroundColor: kPrimaryLightColor,
-        height: 60,
-        // ignore: prefer_const_literals_to_create_immutables
-        items: <Widget>[
-          Icon(Icons.home, size: 35, color: kPrimaryColor),
-          Icon(Icons.favorite, size: 35, color: kPrimaryColor),
-          Icon(Icons.saved_search_sharp, size: 35, color: kPrimaryColor),
-          Icon(Icons.list, size: 35, color: kPrimaryColor),
-        ],
-        onTap: (index) {
-          setState(() {
-            _page = index;
-          });
-        },
-      ),
-      body: _widgetOptions.elementAt(_page),
-    );
-  }
-}
-
 class CarouselLoading extends StatelessWidget {
   const CarouselLoading({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: CarouselSlider(
-        options: CarouselOptions(
-          autoPlay: true,
-          // aspectRatio: 2.0,
-          // enlargeCenterPage: true,
-          viewportFraction: 1.0,
-        ),
-        items: [
-          // container with decoration image
-          Container(
-            child: Image.asset('assets/images/sent0.jpeg'),
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
-            ),
-          ),
-          Container(
-            child: Image.asset('assets/images/sent1.jpeg'),
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
-            ),
-          ),
-        ],
+    return CarouselSlider(
+      options: CarouselOptions(
+        autoPlay: true,
+        // aspectRatio: 3,
+        // enlargeCenterPage: true,
+        viewportFraction: 1.0,
       ),
+      items: [
+        // container with decoration image
+        Container(
+          child: Image.asset('assets/images/sent0.jpeg'),
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+          ),
+        ),
+        Container(
+          child: Image.asset('assets/images/sent1.jpeg'),
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -145,18 +101,7 @@ class RoundedButton extends StatelessWidget {
       width: size.width * 0.8,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(29),
-        child: ElevatedButton(
-          child: Text(
-            text!,
-            style: TextStyle(color: textColor),
-          ),
-          onPressed: press,
-          style: ElevatedButton.styleFrom(
-              primary: color,
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              textStyle: TextStyle(
-                  color: textColor, fontSize: 14, fontWeight: FontWeight.w500)),
-        ),
+        child: newElevatedButton(),
       ),
     );
   }
@@ -202,14 +147,6 @@ class RoundedInputField extends StatelessWidget {
           borderRadius: BorderRadius.circular(29),
           child: Material(
             child: TextFormField(
-
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return "Please enter your name";
-                } else {
-                  return null;
-                }
-              },
               onChanged: onChanged,
               cursorColor: kPrimaryColor,
               decoration: InputDecoration(
@@ -312,6 +249,54 @@ class _CustomeDrawerState extends State<CustomeDrawer> {
           ),
         ),
       ),
+    );
+  }
+}
+
+//////////////////////////////////////////////
+
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+          backgroundColor: kPrimaryLightColor,
+          body: ListView(
+            children: [
+              CarouselLoading(),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: listOfTweets(),
+              ),
+            ],
+          ),
+
+        )
+    );
+  }
+
+  Widget listOfTweets() {
+    return ListView.separated(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (BuildContext context, int index) {
+        return tweets[index];
+      },
+      separatorBuilder: (BuildContext context, int index) => const SizedBox(
+        height: 5,
+      ),
+      itemCount: tweets.length,
     );
   }
 }
