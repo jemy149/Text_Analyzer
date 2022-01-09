@@ -1,4 +1,6 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,6 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sentimental_analyst/models/services.dart';
 import 'package:sentimental_analyst/modules/result.dart';
+import 'package:sentimental_analyst/new_auth/model/user_model.dart';
+import 'package:sentimental_analyst/new_auth/screens/login_screen.dart';
 import 'package:sentimental_analyst/shared/components/components.dart';
 import 'package:sentimental_analyst/shared/components/palette.dart';
 
@@ -16,15 +20,39 @@ class SearchScreen extends StatefulWidget {
   _SearchScreenState createState() => _SearchScreenState();
 }
 
+
+
 class _SearchScreenState extends State<SearchScreen> {
   String text = "";
   String sentimentResult = "";
   String sentimentScore = "";
   // final _formkey = GlobalKey<FormState>();
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  set loggedInUser(UserModel loggedInUser) {}
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+
+    User? user = FirebaseAuth.instance.currentUser;
+    UserModel loggedInUser = UserModel();
+
+    @override
+    void initState() {
+      super.initState();
+      FirebaseFirestore.instance
+          .collection("users")
+          .doc(user!.uid)
+          .get()
+          .then((value) {
+        this.loggedInUser = UserModel.fromMap(value.data());
+        setState(() {});
+      });
+    }
+
     return Scaffold(
       backgroundColor: kPrimaryLightColor,
       appBar: AppBar(
@@ -38,6 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           onPressed: () {
             // do something
+            logout(context);
           },
         )],
       ),
@@ -96,4 +125,12 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
+}
+
+
+// logout function
+Future<void> logout(BuildContext context) async {
+  await FirebaseAuth.instance.signOut();
+  Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => LoginScreen()));
 }
