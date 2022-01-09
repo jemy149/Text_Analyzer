@@ -14,18 +14,19 @@ class Favourits extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryLightColor,
-      body: Container(
-        child: ListView.separated(
-            // physics: NeverScrollableScrollPhysics(),
-            // shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) {
-              return FavoriteTweets[index];
-            },
-            separatorBuilder: (BuildContext context, int index) => const Divider(
-              height: 0,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Container(
+          child: ListView.separated(
+              itemBuilder: (BuildContext context, int index) {
+                return FavoriteTweets[index];
+              },
+              separatorBuilder: (BuildContext context, int index) => const Divider(
+                height: 5,
+              ),
+              itemCount: FavoriteTweets.length,
             ),
-            itemCount: FavoriteTweets.length,
-          ),
+        ),
       ),
     );
   }

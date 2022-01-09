@@ -31,6 +31,15 @@ class _SearchScreenState extends State<SearchScreen> {
         title: Text("sentiment analyzer",style: TextStyle(fontStyle: FontStyle.italic,),),
         centerTitle: true,
         backgroundColor: kPrimaryColor,
+        actions: [ IconButton(
+          icon: Icon(
+            Icons.logout,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            // do something
+          },
+        )],
       ),
       body: SingleChildScrollView(
         child: Container(

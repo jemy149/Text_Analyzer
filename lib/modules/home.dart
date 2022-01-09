@@ -7,6 +7,7 @@ import 'package:sentimental_analyst/shared/components/palette.dart';
 import 'package:sentimental_analyst/models/tweets.dart';
 
 import 'favourits.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -16,16 +17,18 @@ class _HomeState extends State<Home> {
   int selectedIndex = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   List widgetOptions = [
+    SearchScreen(),
     HomeScreen(),
     Favourits(),
-    SearchScreen(),
-    CustomeDrawer(),
+
+    // CustomeDrawer(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-        color: kPrimaryColor.withOpacity(0.35),
+        color: kPrimaryColor.withOpacity(0.30),
         backgroundColor: kPrimaryLightColor,
         key: _bottomNavigationKey,
         buttonBackgroundColor: Colors.white,
@@ -33,17 +36,15 @@ class _HomeState extends State<Home> {
         // ignore: prefer_const_literals_to_create_immutables
         items: <Widget>[
           Icon(Icons.home, size: 35, color: kPrimaryColor),
+          Icon(Icons.textsms_outlined, size: 35, color: kPrimaryColor),
           Icon(Icons.favorite, size: 35, color: kPrimaryColor),
-          Icon(Icons.saved_search_sharp, size: 35, color: kPrimaryColor),
-          Icon(Icons.list, size: 35, color: kPrimaryColor),
+          // Icon(Icons.list, size: 35, color: kPrimaryColor),
         ],
         onTap: (index) {
           setState(() {
             selectedIndex = index;
           });
         },
-
-
       ),
       body: widgetOptions.elementAt(selectedIndex),
     );

@@ -230,28 +230,28 @@ class TextFieldContainer extends StatelessWidget {
   }
 }
 
-class CustomeDrawer extends StatefulWidget {
-  const CustomeDrawer({Key? key}) : super(key: key);
-
-  @override
-  _CustomeDrawerState createState() => _CustomeDrawerState();
-}
-
-class _CustomeDrawerState extends State<CustomeDrawer> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        endDrawer: Drawer(
-          child: Text(
-            'Settings',
-            style: TextStyle(fontSize: 30),
-          ),
-        ),
-      ),
-    );
-  }
-}
+// class CustomeDrawer extends StatefulWidget {
+//   const CustomeDrawer({Key? key}) : super(key: key);
+//
+//   @override
+//   _CustomeDrawerState createState() => _CustomeDrawerState();
+// }
+//
+// class _CustomeDrawerState extends State<CustomeDrawer> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//       child: Scaffold(
+//         drawer: Drawer(
+//           child: Text(
+//             'Settings',
+//             style: TextStyle(fontSize: 30),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 //////////////////////////////////////////////
 
