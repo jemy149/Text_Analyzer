@@ -146,19 +146,26 @@ class RoundedInputField extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(29),
           child: Material(
-            child: TextFormField(
-              onChanged: onChanged,
-              cursorColor: kPrimaryColor,
-              decoration: InputDecoration(
-                icon: Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Icon(
-                    icon,
-                    color: kPrimaryColor,
+            child: Container(
+              height: 100,
+              width: double.infinity,
+              child: TextFormField(
+                expands: true,
+                maxLines: null,
+                minLines: null,
+                onChanged: onChanged,
+                cursorColor: kPrimaryColor,
+                decoration: InputDecoration(
+                  icon: Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Icon(
+                      icon,
+                      color: kPrimaryColor,
+                    ),
                   ),
+                  hintText: hintText,
+                  border: InputBorder.none,
                 ),
-                hintText: hintText,
-                border: InputBorder.none,
               ),
             ),
           ),

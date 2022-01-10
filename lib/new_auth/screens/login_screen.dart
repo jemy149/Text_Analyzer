@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sentimental_analyst/modules/home.dart';
-import 'package:sentimental_analyst/new_auth/screens/home_screen.dart';
 import 'package:sentimental_analyst/new_auth/screens/registration_screen.dart';
 import 'package:sentimental_analyst/shared/components/palette.dart';
 

@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sentimental_analyst/modules/home.dart';
 import 'package:sentimental_analyst/new_auth/model/user_model.dart';
-import 'package:sentimental_analyst/new_auth/screens/home_screen.dart';
 import 'package:sentimental_analyst/shared/components/palette.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -300,7 +300,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => Home()),
         (route) => false);
   }
 }
