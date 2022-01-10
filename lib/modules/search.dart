@@ -104,7 +104,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 60),
                   child: RoundedButton(
-                      text: 'Analyze Your Text',
+                      text: 'Analyze Text',
                       press: () {
                         Provider.of<ApiGetter>(context, listen: false)
                             .fetchData(text);

@@ -1,11 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sentimental_analyst/models/tweets.dart';
-import 'package:sentimental_analyst/modules/search.dart';
 import 'package:sentimental_analyst/shared/components/palette.dart';
-import 'package:sentimental_analyst/modules/favourits.dart';
-import 'package:sentimental_analyst/modules/home.dart';
+
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
   final bool login;
