@@ -90,7 +90,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   height:20,
                 ),
                 RoundedInputField(
-                  hintText: '             Write any thing',
+                  hintText: '            Write any thing',
                   icon: Icons.sentiment_satisfied_alt,
                   onChanged: (value) {
                     setState(() {
