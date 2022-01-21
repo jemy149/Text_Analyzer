@@ -28,6 +28,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
+        animationDuration: Duration(milliseconds: 300),
         color: kPrimaryColor.withOpacity(0.30),
         backgroundColor: kPrimaryLightColor,
         key: _bottomNavigationKey,
@@ -37,7 +38,7 @@ class _HomeState extends State<Home> {
         items: <Widget>[
           Icon(Icons.home, size: 35, color: kPrimaryColor),
           Icon(Icons.textsms_outlined, size: 35, color: kPrimaryColor),
-          Icon(Icons.favorite, size: 35, color: kPrimaryColor),
+          Icon(Icons.save_outlined, size: 35, color: kPrimaryColor),
           // Icon(Icons.list, size: 35, color: kPrimaryColor),
         ],
         onTap: (index) {

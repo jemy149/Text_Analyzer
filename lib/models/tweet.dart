@@ -98,7 +98,7 @@ class _TweetState extends State<Tweet> {
           icon: const Icon(
             FontAwesomeIcons.angleDown,
             size: 14.0,
-            color: Colors.grey,
+            color: Colors.white,
           ),
           onPressed: () {},
         ),
@@ -119,11 +119,10 @@ class _TweetState extends State<Tweet> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // tweetIconButton(FontAwesomeIcons.comment, comments,index),
           tweetIconButton(FontAwesomeIcons.check, widget.index,() {
             
                         Provider.of<ApiGetter>(context, listen: false)
-                            .fetchData("sf");
+                            .fetchData(widget.text);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -138,8 +137,13 @@ class _TweetState extends State<Tweet> {
               FavoriteTweets.add(tweets[widget.index]);
               print(FavoriteTweets[0]);
             });
+          },),tweetIconButton(Icons.phonelink_erase, widget.index,() {
+            setState(() {
+              FavoriteTweets.remove(tweets[widget.index]);
+              print(FavoriteTweets[0]);
+            });
           },),
-          // tweetIconButton(FontAwesomeIcons.share, '',index),
+
         ],
       ),
     );
@@ -150,28 +154,13 @@ class _TweetState extends State<Tweet> {
       children: [
         IconButton(
           onPressed: func,
-          // () {
-          //   setState(() {
-          //     FavoriteTweets.add(tweets[index]);
-          //     print(FavoriteTweets[0]);
-          //   });
-          // },
           icon: Icon(
             icon,
             size: 16.0,
             color: Colors.black45,
           ),
         ),
-        // Container(
-        //   margin: const EdgeInsets.all(6.0),
-        //   child: Text(
-        //     "text",
-        //     style: const TextStyle(
-        //       color: Colors.black45,
-        //       fontSize: 14.0,
-        //     ),
-        //   ),
-        // ),
+
       ],
     );
   }

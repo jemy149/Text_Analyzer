@@ -234,32 +234,6 @@ class TextFieldContainer extends StatelessWidget {
   }
 }
 
-// class CustomeDrawer extends StatefulWidget {
-//   const CustomeDrawer({Key? key}) : super(key: key);
-//
-//   @override
-//   _CustomeDrawerState createState() => _CustomeDrawerState();
-// }
-//
-// class _CustomeDrawerState extends State<CustomeDrawer> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         drawer: Drawer(
-//           child: Text(
-//             'Settings',
-//             style: TextStyle(fontSize: 30),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-//////////////////////////////////////////////
-
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 

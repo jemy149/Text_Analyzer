@@ -87,13 +87,16 @@ class _ResultState extends State<Result> {
                   height: 10,
                 ),
                 Center(
-                    child: Text(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
                   '${authors.tweet}',
                   style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
                   ),
-                )),
+                ),
+                    )),
               ]),
           )
           : Center(

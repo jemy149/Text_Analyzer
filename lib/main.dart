@@ -15,8 +15,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
-
         return MultiProvider(
           providers: [
             ChangeNotifierProvider<ApiGetter>(
